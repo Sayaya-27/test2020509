@@ -1,0 +1,51 @@
+package com.zzu.jyy.test12;
+
+public class Dijkstra {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	class MGraph {
+		int[][] matrix = new int[4][4];
+		int node;
+		int edge;
+	}
+
+	private void dijkstra(MGraph graph, int[] dist, int[] path, int v0) {
+		// TODO Auto-generated method stub
+		boolean[] flag = new boolean[1];
+		// 距离初始化
+		for (int i = 0; i < graph. node; i++) {// 连通
+			if (graph.matrix[v0][i] >= 0) {
+				dist[i] = graph. matrix[v0][i];
+				path[i] = v0;
+			} else {
+				dist[i] = INT_MAX;
+				path[i] = -1;
+			}
+			flag[]=false;
+		}
+		flag[v0] = true;
+		for (int i = 1; i < flag.size(); i++) {// 每次循环求出一个目的地的最短路径
+			int min = INT_MAX;
+			int u;// 记录每次求出最短路径的点
+			for (int j = 0; j < graph -> n; j++) {
+				if (flag[j] == false && dist[j] < min) {
+					min = dist[j];
+					u = j;
+				}
+			}
+			flag[u] = true;// 去除已知节点
+			// 更新dist距离
+			for (int k = 0; k < graph -> n; k++) {
+				if (flag[k] == false && graph -> matrix[u][k] > 0 && dist[u] + graph -> matrix[u][k] < dist[k]) {
+					dist[k] = dist[u] + graph -> matrix[u][k];
+					path[k] = u;
+				}
+			}
+		}
+
+	}
+}
